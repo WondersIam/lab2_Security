@@ -13,7 +13,7 @@
 #include <crypt.h>
 
 #include "pwent.h" 
-
+#include <sys/wait.h>
 #define TRUE 1
 #define FALSE 0
 #define LENGTH 16
@@ -107,13 +107,30 @@ int main(int argc, char *argv[]) {
 				strcat(login_information,char_uid);
 				printf("%s\n",login_information); */
 				//if
-				if(temp == 0)
-				{
-					if(execlp("/bin/sh", "Interpter",NULL)==-1)
-				{
-					perror("execlp fails\n");
-					exit(0);
-				}
+				/* if (execve("/bin/bash",NULL,NULL) < 0) {     // execute the command 
+					perror("Error");exit(EXIT_FAILURE);  */
+
+				if(temp == 100)
+				{	
+					//creating child process
+					/* pid_t pid = fork();
+					if (pid == -1) {
+            			perror("fork");
+            			exit(EXIT_FAILURE);}
+					//child process
+					else if(pid == 0)
+					{
+						//open a interpter
+						execlp("/bin/sh", "Interpter",NULL);
+					}
+					else//parent process wait uitil child finished
+					{
+						wait(NULL);
+						printf("Loginned Shell exited.\n");
+					} */
+					//execlp("/bin/sh", "Interpter",NULL);
+					 system("/usr/bin/x-terminal-emulator -e /bin/sh");
+					   // system("xterm");
 				}
 				else{
 
